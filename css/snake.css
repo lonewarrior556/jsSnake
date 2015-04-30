@@ -1,0 +1,58 @@
+ul, li, h1, body, strong, section {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+
+  background: transparent;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+
+ }
+
+ ul {
+   list-style-type: none;
+ }
+
+ body {
+   font-family: sans-serif;
+ }
+
+h1 {
+  text-align: center;
+  font-size: 84px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.group:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.plane {
+  background: green;
+  width: 400px;
+  height: 400px;
+  margin:auto;
+  border: 1px solid black;
+}
+
+.plane > li {
+  background: yellow;
+  width: 23px;
+  border: 1px solid black;
+  height: 25px;
+  float: left;
+}
+
+.plane > .snake {
+  background: green;
+}
+
+.plane > .cherry {
+  background: red;
+}
