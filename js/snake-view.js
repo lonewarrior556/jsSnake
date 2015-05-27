@@ -24,23 +24,37 @@
 
   var snake = Snake.snake = function(board) {
     this.board = board;
-    this.bodySegments = [12];
+    this.bodySegments = [12,13];
+    this.lastPosition = [14];
     this.currentDirection = -1;
+    this.score = 0
   }
 
 
   snake.prototype.move = function() {
     var headPos = (this.bodySegments[0] + this.currentDirection)%256 ;
-    if (headPos <= 0){ headPos = headPos + 256}
-    this.bodySegments.unshift(headPos);
+    if (headPos < 0){ headPos = headPos + 256}
+
+    if (this.bodySegments.indexOf(headPos) !== -1){
+      $(".score").removeClass("score")
+      $(".plane").remove()
+      $("ul, a, img").addClass("final")
+      return
+
+
+    }
+    else{
+    }
+      this.bodySegments.unshift(headPos)
 
     if (this.board.cherry === headPos)
     {
       while ( this.bodySegments.indexOf(this.board.eat())!= -1){};
     }
     else {
-      this.bodySegments.pop();
+      this.lastPosition = [this.bodySegments.pop()];
     }
+    this.score = this.score + Math.floor(this.bodySegments.length * 1.1)
   }
 
   snake.prototype.render = function(){
@@ -66,29 +80,41 @@
 
 
 
-
-
   var View = Snake.View = function(snake) {
     this.snake = snake;
   };
 
   View.prototype.run = function() {
     var that=this;
+
     setInterval(function() {
-      console.log(that.snake.bodySegments[0])
-      for (var i =0; i < 257; i++){
-        $(".plane li:nth-child("+ i + ")").removeClass("snake");
-        $(".plane li:nth-child("+ i + ")").removeClass("cherry");
-      }
-      that.snake.bodySegments.forEach(function(i) {
-        $(".plane li:nth-child("+ i + ")").addClass("snake");
-      });
+      $(".cherry").removeClass("cherry");
+
+      var i = that.snake.bodySegments[0] + 1
+
+      var direction;
+      if (that.snake.currentDirection === -1){ direction = "left" }
+      else if (that.snake.currentDirection === 1){ direction = "right"  }
+      else if (that.snake.currentDirection === 16){ direction = "down" }
+      else {direction = "up"}
+
+      $(".plane li:nth-child("+ i + ")").addClass("snake head "+direction );
+
+
+      var z = that.snake.bodySegments[1] + 1
+      $(".plane li:nth-child("+ z + ")").removeClass().addClass("snake");
+      var j = that.snake.lastPosition[0] + 1
+      $(".plane li:nth-child("+ j + ")").removeClass("snake");
+
       var cher = that.snake.board.cherry;
-        $(".plane li:nth-child("+cher+")").addClass("cherry");
+        $(".plane li:nth-child("+(cher +1) +")").addClass("cherry");
+      $(".score").text(that.snake.score)
       that.snake.move()
       $(".plane").off("click", "li");
-    },1)
+    },80)
+
   };
+
 
 
   View.prototype.bindEvents = function() {
@@ -96,17 +122,22 @@
     $(document).keydown(function(e){
       var n = e.keyCode;
       if (n === 37){
-        that.snake.currentDirection = -1;
-      }
+        if (that.snake.currentDirection !== 1){
+          that.snake.currentDirection = -1;
+      }}
+
       else if (n === 38){
+        if (that.snake.currentDirection !== 16){
         that.snake.currentDirection = -16;
-      }
+      }}
       else if (n === 39){
+        if (that.snake.currentDirection !== -1){
         that.snake.currentDirection = 1;
-      }
+      }}
       else if (n === 40){
+        if (that.snake.currentDirection !== -16){
         that.snake.currentDirection = 16;
-      }
+      }}
 
     })
 

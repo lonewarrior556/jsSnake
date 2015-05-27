@@ -27,6 +27,23 @@ h1 {
   margin: 10px;
 }
 
+a, img {
+  display: none;
+}
+
+img{
+  width: 256px;
+  border-radius:10px;
+  margin: auto;
+}
+
+.score-ul{
+  text-align: center;
+  font-size: 44px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .group:after{
   content: "";
   display: block;
@@ -34,25 +51,128 @@ h1 {
 }
 
 .plane {
-  background: green;
+  background: yellow;
   width: 400px;
   height: 400px;
   margin:auto;
   border: 1px solid black;
+  /*overflow: hidden;*/
 }
 
 .plane > li {
+  display: block;
   background: yellow;
   width: 23px;
   border: 1px solid black;
-  height: 25px;
+  height: 23px;
   float: left;
 }
 
 .plane > .snake {
   background: green;
 }
+.plane > .snake.head{
+  border-radius: 5px;
+}
+
+.plane > .head.left:before{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  left:-17px;
+  top: -4px;
+  content: "Y";
+  color: red;
+  transform: rotate(-90deg);
+}
+.plane > .head.left:after{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: ":";
+  font-size: 20px;
+  color: black;
+  top: -20px;
+  right: -5px;
+
+}
+.plane > .snake.down:before{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: "Y";
+  color: red;
+  transform: rotate(-180deg);
+  bottom:-20px;
+  left: -7px;
+}
+
+.plane > .head.down:after{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: ":";
+  font-size: 20px;
+  color: black;
+  top: -22px;
+  left: -1px;
+  transform: rotate(-90deg)
+}
+
+
+.plane > .snake.up:before{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: "Y";
+  color: red;
+  top: -16px;
+  right: -7px;
+}
+
+.plane > .head.up:after{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: ":";
+  font-size: 20px;
+  color: black;
+  top: -30px;
+  left: -1px;
+  transform: rotate(-90deg)
+}
+
+
+.plane > .snake.right:before{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: "Y";
+  color: red;
+  right:-17px;
+  bottom: -9px;
+  transform: rotate(90deg);
+}
+
+.plane > .head.right:after{
+  display: block;
+  font-weight: bold;
+  position: relative;
+  content: ":";
+  font-size: 20px;
+  color: black;
+  top: -20px;
+  right: -11px;
+}
 
 .plane > .cherry {
   background: red;
+}
+
+.final{
+  font-size: 1000% ;
+  display: block !important;
+}
+a.final {
+  font-size: 22px !important;
 }
