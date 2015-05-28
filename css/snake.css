@@ -12,12 +12,16 @@ ul, li, h1, body, strong, section {
 
  }
 
+html{
+  overflow: hidden;
+}
  ul {
    list-style-type: none;
  }
 
  body {
    font-family: sans-serif;
+   overflow:hidden;
  }
 
 h1 {
