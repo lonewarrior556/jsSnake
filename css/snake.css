@@ -182,3 +182,7 @@ img{
 a.final {
   font-size: 22px !important;
 }
+article {
+margin: 80px;
+  text-align: right;
+}
