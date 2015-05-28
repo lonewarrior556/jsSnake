@@ -3,7 +3,7 @@
  A light weight web game using HTML JQuery and CSS. 
 
 How to play:
- Snake starts automatically and can move pretty fast. Change direction with the arrow keys, simply avoid hitting yourself, there are no walls holding you back.
+ Snake starts automatically and can move pretty fast. Change direction with the arrow keys. Simply avoid hitting yourself, there are no walls holding you back.
  
 Further Description:
  The "board" is a simple unordered list with 256 line elements that are floated left with a 1px border.
