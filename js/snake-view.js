@@ -119,15 +119,19 @@
   View.prototype.bindEvents = function() {
     var that = this;
     var left = function(){
+      console.log('move');
       if (that.snake.currentDirection !== 1){ that.snake.currentDirection = -1 }
     }
     var up = function(){
+      console.log('move');
       if (that.snake.currentDirection !== 16){ that.snake.currentDirection = -16 }
     }
     var right = function(){
+      console.log('move');
       if (that.snake.currentDirection !== -1){  that.snake.currentDirection = 1 }
     }
     var down = function(){
+      console.log('move');
       if (that.snake.currentDirection !== -16){ that.snake.currentDirection = 16  }
     }
 
