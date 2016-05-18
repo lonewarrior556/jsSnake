@@ -1,7 +1,6 @@
 (function() {
   if (typeof Snake === "undefined") {
     window.Snake = {};
-
   }
 
 
@@ -119,26 +118,43 @@
 
   View.prototype.bindEvents = function() {
     var that = this;
+    var left = function(){
+      console.log('move');
+      if (that.snake.currentDirection !== 1){ that.snake.currentDirection = -1 }
+    }
+    var up = function(){
+      console.log('move');
+      if (that.snake.currentDirection !== 16){ that.snake.currentDirection = -16 }
+    }
+    var right = function(){
+      console.log('move');
+      if (that.snake.currentDirection !== -1){  that.snake.currentDirection = 1 }
+    }
+    var down = function(){
+      console.log('move');
+      if (that.snake.currentDirection !== -16){ that.snake.currentDirection = 16  }
+    }
+
+    $(document).on('swipeup', up);
+    $(document).on('swipedown', down);
+    $(document).on('swipeleft', left);
+    $(document).on('swiperight', right);
+
     $(document).keydown(function(e){
-      var n = e.keyCode;
-      if (n === 37){
-        if (that.snake.currentDirection !== 1){
-          that.snake.currentDirection = -1;
-      }}
-
-      else if (n === 38){
-        if (that.snake.currentDirection !== 16){
-        that.snake.currentDirection = -16;
-      }}
-      else if (n === 39){
-        if (that.snake.currentDirection !== -1){
-        that.snake.currentDirection = 1;
-      }}
-      else if (n === 40){
-        if (that.snake.currentDirection !== -16){
-        that.snake.currentDirection = 16;
-      }}
-
+      switch(e.keyCode){
+        case 37:
+          left();
+          break;
+        case 38:
+          up();
+          break;
+        case 39:
+          right();
+          break;
+        case 40:
+          down();
+          break;
+      }
     })
 
 
